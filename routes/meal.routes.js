@@ -10,6 +10,6 @@ mealRouter
 mealRouter
   .route("/:id")
   .get(mealController.findMeal)
-  .post(mealController.updateMeal);
+  .put(mealController.updateMeal);
 
 module.exports = mealRouter;

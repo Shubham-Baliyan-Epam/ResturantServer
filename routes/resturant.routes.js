@@ -10,6 +10,6 @@ resturantRouter
 resturantRouter
   .route("/:id")
   .get(resturantController.findResturant)
-  .post(resturantController.updateResturant);
+  .put(resturantController.updateResturant);
 
 module.exports = resturantRouter;
