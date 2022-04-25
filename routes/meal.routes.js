@@ -1,9 +1,15 @@
 const express = require("express");
 const mealRouter = express.Router();
 
-mealRouter.get("/", (req, res) => {
-  console.log("Meal ROuter");
-  res.send("lol");
-});
+const mealController = require("../controllers/mealController");
+mealRouter
+  .route("/")
+  .get(mealController.findAllMeals)
+  .post(mealController.createMeal);
+
+mealRouter
+  .route("/:id")
+  .get(mealController.findMeal)
+  .post(mealController.updateMeal);
 
 module.exports = mealRouter;

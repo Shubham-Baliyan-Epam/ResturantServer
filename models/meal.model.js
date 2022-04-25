@@ -13,6 +13,13 @@ module.exports = (Sequelize, sequelize) => {
       mediumOriginalPrice: Sequelize.FLOAT,
       largeOriginalPrice: Sequelize.FLOAT,
       image: Sequelize.STRING,
+      resturant_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "resturant",
+          key: "id",
+        },
+      },
     },
     {
       timestamps: true,

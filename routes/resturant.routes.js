@@ -1,9 +1,15 @@
 const express = require("express");
 const resturantRouter = express.Router();
 
-resturantRouter.get("/", (req, res) => {
-  console.log("resturant ROuter");
-  res.send("lol");
-});
+const resturantController = require("../controllers/resturantController");
+resturantRouter
+  .route("/")
+  .get(resturantController.findAllResturants)
+  .post(resturantController.createResturant);
+
+resturantRouter
+  .route("/:id")
+  .get(resturantController.findResturant)
+  .post(resturantController.updateResturant);
 
 module.exports = resturantRouter;
