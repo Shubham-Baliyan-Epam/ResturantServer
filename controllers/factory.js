@@ -49,6 +49,7 @@ exports.createOne = (Model) => async (req, res) => {
 };
 exports.updateOne = (Model) => async (req, res) => {
   let body = req.body;
+  let id = req.params.id;
   try {
     const data = await db[Model].update(
       {
