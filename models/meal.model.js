@@ -1,0 +1,23 @@
+module.exports = (Sequelize, sequelize) => {
+  const Meal = sequelize.define(
+    "meal",
+    {
+      name: Sequelize.STRING,
+      shortDescription: Sequelize.STRING,
+      medium: Sequelize.BOOLEAN,
+      large: Sequelize.BOOLEAN,
+      originalPrice: Sequelize.FLOAT,
+      discountedPrice: Sequelize.FLOAT,
+      mediumDiscountedPrice: Sequelize.FLOAT,
+      largeDiscountedPrice: Sequelize.FLOAT,
+      mediumOriginalPrice: Sequelize.FLOAT,
+      largeOriginalPrice: Sequelize.FLOAT,
+      image: Sequelize.STRING,
+    },
+    {
+      timestamps: true,
+      freezeTableName: true,
+    }
+  );
+  return Meal;
+};
