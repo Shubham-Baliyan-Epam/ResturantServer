@@ -5,7 +5,7 @@ const userRouter = require("./user.routes");
 const router = express.Router();
 
 router.use("/meal", mealRouter);
-router.use("/user", userRouter);
+router.use("/auth", userRouter);
 router.use("/resturant", resturantRouter);
 
 module.exports = router;
