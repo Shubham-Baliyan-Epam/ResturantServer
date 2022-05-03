@@ -1,14 +1,13 @@
-const multer = require("multer");
-const sharp = require("sharp");
-const fs = require("fs");
-const path = require("path");
+const multer = require('multer');
+const sharp = require('sharp');
+
 const multerStorage = multer.memoryStorage();
 
 const multerFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith("image")) {
+  if (file.mimetype.startsWith('image')) {
     cb(null, true);
   } else {
-    cb(new AppError("Not an image! Please upload only images.", 400), false);
+    cb(new Error('Not an image! Please upload only images.'));
   }
 };
 
@@ -16,14 +15,14 @@ const imageUpload = multer({
   storage: multerStorage,
   fileFilter: multerFilter,
 });
-exports.uploadSingle = imageUpload.single("image");
+exports.uploadSingle = imageUpload.single('image');
 
 exports.uploadSuccess = async (req, res) => {
   // console.log(req);
-  let path = req.file.originalname.split(".")[0] + "_" + Date.now() + ".webp";
+  const path = `${req.file.originalname.split('.')[0]}_${Date.now()}.webp`;
   await sharp(req.file.buffer)
     .resize(2000, 1333)
-    .toFormat("webp")
+    .toFormat('webp')
     .webp({ quality: 90 })
     .toFile(`assets/${path}`);
 
