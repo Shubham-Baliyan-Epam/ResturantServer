@@ -12,7 +12,6 @@ db.sequelize
   .then()
   .catch((err) => console.log(err));
 app.use(express.json());
-app.use(express.urlencoded());
 
 app.use(express.static(__dirname)); //to serve the static assets
 app.use("/api/v2", baseRouter);
