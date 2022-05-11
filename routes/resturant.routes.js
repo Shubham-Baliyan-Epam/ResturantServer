@@ -1,15 +1,16 @@
-const express = require("express");
+const express = require('express');
 const resturantRouter = express.Router();
 
-const resturantController = require("../controllers/resturantController");
+const resturantController = require('../controllers/resturantController');
+const checkIfAuthenticated = require('../middlewares/chechIfAuthenticated');
 resturantRouter
-  .route("/")
+  .route('/')
   .get(resturantController.findAllResturants)
   .post(resturantController.createResturant);
 
 resturantRouter
-  .route("/:id")
-  .get(resturantController.findResturant)
+  .route('/:id')
+  .get(checkIfAuthenticated, resturantController.findResturant)
   .put(resturantController.updateResturant);
 
 module.exports = resturantRouter;

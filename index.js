@@ -1,9 +1,10 @@
-const express = require("express");
-const path = require("path");
+const express = require('express');
+const path = require('path');
 
-const db = require("./models/index.model");
-const baseRouter = require("./routes/index.routes");
-require("dotenv").config();
+const db = require('./models/index.model');
+const baseRouter = require('./routes/index.routes');
+const globalErrorHandler = require('./controllers/errorController');
+require('dotenv').config();
 
 const app = express();
 
@@ -14,8 +15,8 @@ db.sequelize
 app.use(express.json());
 
 app.use(express.static(__dirname)); //to serve the static assets
-app.use("/api/v2", baseRouter);
-
+app.use('/api/v2', baseRouter);
+app.use(globalErrorHandler);
 app.listen(process.env.PORT, () => {
-  console.log("server is listening");
+  console.log('server is listening');
 });
